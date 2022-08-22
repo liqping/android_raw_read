@@ -37,11 +37,9 @@ public class AndroidRawReadPlugin implements FlutterPlugin, MethodCallHandler {
 
   @Override
   public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-    if (call.method.equals("getPlatformVersion")) {
-      result.success("Android " + android.os.Build.VERSION.RELEASE);
-    } if (call.method.equals("readRawFile")) {
+   if (call.method.equals("readRawFile")) {
       if(applicationContext == null){
-        result.success(false);
+        result.success(null);
         return;
       }
       String fileName = (String) call.arguments;
@@ -64,19 +62,19 @@ public class AndroidRawReadPlugin implements FlutterPlugin, MethodCallHandler {
             out.append(line).append("\n");
           }
           Log.e("rawFileTest","data:" + out);
-          result.success(true);
+          result.success(out.toString());
 
         }
         catch (Exception e)
         {
           e.printStackTrace();
-          result.success(false);
+          result.success(null);
         }
 
       }
       else
       {
-        result.success(false);
+        result.success(null);
       }
     }
     else {

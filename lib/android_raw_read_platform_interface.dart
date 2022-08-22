@@ -27,7 +27,7 @@ abstract class AndroidRawReadPlatform extends PlatformInterface {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 
-  Future readRawFile(String rawName) {
+  Future<String?> readRawFile(String rawName) {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
 }

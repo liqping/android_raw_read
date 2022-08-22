@@ -15,8 +15,8 @@ class MethodChannelAndroidRawRead extends AndroidRawReadPlatform {
     return version;
   }
   @override
-  Future readRawFile(String rawName) async{
-    await methodChannel.invokeMethod('readRawFile',rawName);
+  Future<String?> readRawFile(String rawName) async{
+    return await methodChannel.invokeMethod('readRawFile',rawName);
   }
 
 }

@@ -23,15 +23,48 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('test'),
         ),
-        body: Center(
-          child: ElevatedButton(
-            child: const Text('play'),
-            onPressed: (){
-              AndroidRawRead().readRawFile('test.txt');
-            },
-          ),
-        ),
+        body: _TestPage(),
       ),
     );
   }
+}
+
+class _TestPage extends StatefulWidget{
+  @override
+  State<StatefulWidget> createState() {
+    return _TestState();
+  }
+}
+
+class _TestState extends State{
+
+  String? _fileString;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          ElevatedButton(
+            child: const Text('read'),
+            onPressed: (){
+              AndroidRawRead().readRawFile('test.txt').then((value) {
+                if(mounted){
+                  setState(() {
+                    _fileString = value;
+                  });
+                }
+              });
+            },
+          ),
+          const Padding(padding: EdgeInsets.only(top: 20)),
+          const Text('file content:'),
+          if(_fileString != null)
+            Text(_fileString!),
+        ],
+      ),
+    );
+  }
+
 }

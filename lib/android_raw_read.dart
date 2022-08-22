@@ -6,7 +6,7 @@ class AndroidRawRead {
     return AndroidRawReadPlatform.instance.getPlatformVersion();
   }
 
-  Future readRawFile(String rawName){
+  Future<String?> readRawFile(String rawName){
     return AndroidRawReadPlatform.instance.readRawFile(rawName);
   }
 
